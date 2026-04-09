@@ -1,5 +1,5 @@
 from enum import Enum
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 from .zone import Zone
 from .connection import Connection
@@ -14,16 +14,15 @@ class DroneStatus(Enum):
 
 @dataclass
 class Drone:
-    drone_id: int
-    current_zone: Zone
-    path: list[Zone]
+    id: int
+    path: list[Zone] = field(default_factory=list)
     path_index: int = 0
     status: DroneStatus = DroneStatus.WAITING
     transit_turns_left: int = 0
     transit_connection: Optional[Connection] = None
 
     def identifier(self) -> str:
-        return f"D{self.drone_id}"
+        return f"D{self.id}"
 
     def __str__(self) -> str:
         return self.identifier()
@@ -41,5 +40,4 @@ class Drone:
         if self.has_arrived():
             return False
         self.path_index += 1
-        self.current_zone = self.path[self.path_index]
         return True

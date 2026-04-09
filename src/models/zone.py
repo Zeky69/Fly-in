@@ -12,12 +12,24 @@ class HubType(str, Enum):
     END = "end_hub"
     START = "start_hub"
 
+    @staticmethod
+    def is_hub(value: str) -> bool:
+        return value in HubType._value2member_map_
+
 
 class ZoneType(str, Enum):
     NORMAL = "normal"
     RESTRICTED = "restricted"
     PRIORITY = "priority"
     BLOCKED = "blocked"
+
+    @staticmethod
+    def is_zone(value: str) -> bool:
+        return value in ZoneType._value2member_map_
+
+    @staticmethod
+    def get_set() -> set[str]:
+        return {z.value for z in ZoneType}
 
 
 @dataclass

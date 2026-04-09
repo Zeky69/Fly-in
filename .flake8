@@ -1,0 +1,10 @@
+[flake8]
+exclude =
+    .venv,
+    .mypy_cache,
+    __pycache__,
+    maps
+per-file-ignores =
+    *.pyc:
+    *.pyo:
+    *.pyd:
