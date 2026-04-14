@@ -64,15 +64,13 @@ class Graph:
         return self.adjacency_list.get(zone.name, [])
 
     def get_start(self) -> Optional[Zone]:
-        for zone in self.zones.values():
-            if zone.type == HubType.START:
-                return zone
+        if self.name_start is not None:
+            return self.zones.get(self.name_start)
         return None
 
     def get_end(self) -> Optional[Zone]:
-        for zone in self.zones.values():
-            if zone.type == HubType.END:
-                return zone
+        if self.name_end is not None:
+            return self.zones.get(self.name_end)
         return None
 
     def get_connection(self, zone1: str, zone2: str) -> Optional[Connection]:

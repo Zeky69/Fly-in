@@ -1,11 +1,10 @@
 [project]
 name = "a-maze-ing"
 version = "0.1.0"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 dependencies = [
     "pygame>=2.6.1",
     "rich>=14.3.3",
-    "typing>=3.10.0.0",
 ]
 
 [dependency-groups]

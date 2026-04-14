@@ -8,7 +8,6 @@ from .connection import Connection
 class DroneStatus(Enum):
     WAITING = "waiting"
     IN_TRANSIT = "in_transit"
-    MOVING = "moving"
     ARRIVED = "arrived"
 
 

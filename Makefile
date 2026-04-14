@@ -1,6 +1,6 @@
 VENV	= .venv
-MAIN	= fly-in.py
-ARGS	= config.txt
+MAIN	= main.py
+ARGS	= maps/easy/01_linear_path.txt
 
 
 .PHONY: all install run debug lint lint-strict  clean fclean re

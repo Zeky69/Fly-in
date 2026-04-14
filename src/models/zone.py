@@ -60,7 +60,7 @@ class Zone:
         elif self.zone == ZoneType.RESTRICTED:
             return 2
         elif self.zone == ZoneType.PRIORITY:
-            return 0.5
+            return 1
         elif self.zone == ZoneType.BLOCKED:
             return float('inf')
         return float('inf')  # unreachable, all enum members covered
@@ -68,7 +68,7 @@ class Zone:
     def can_accept_drone(self) -> bool:
         if self.zone == ZoneType.BLOCKED:
             return False
-        if self.type != HubType.NORMAL:
+        if self.type == HubType.END:
             return True
         return len(self.drones) < self.max_drone
 

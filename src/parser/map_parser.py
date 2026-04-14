@@ -44,6 +44,7 @@ class MapParser:
         logger.debug(f"Read {len(lines)} lines from '{self.file_path}'")
         graph = Graph()
         first_line = True
+        seen_connections: set[frozenset[str]] = set()
         try:
             for line in lines:
                 line = line.strip()
@@ -56,6 +57,13 @@ class MapParser:
                     continue
                 if line.startswith("connection:"):
                     connection = self._parse_connection(line)
+                    key = frozenset([connection.from_zone, connection.to_zone])
+                    if key in seen_connections:
+                        logger.error(
+                            f"In '{self.file_path}': duplicate connection "
+                            f"'{connection.from_zone}-{connection.to_zone}'"
+                        )
+                    seen_connections.add(key)
                     graph.add_connection(connection)
                     continue
                 zone = self._parse_zone(line)
@@ -92,7 +100,7 @@ class MapParser:
             drone = Drone(id=i)
             logger.debug(f"Created drone #{i}")
             if start_zone is not None:
-                start_zone.add_drone(drone)
+                start_zone.drones.append(drone)
                 logger.debug(f"Drone #{i} placed at start zone"
                              f" '{start_zone.name}'")
 
