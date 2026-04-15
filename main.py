@@ -202,16 +202,16 @@ def main() -> None:
         graph, drones = result
         gui.load_graph(graph)
 
+        term = TerminalDisplay(graph) if visual else None
+        frames = _run_simulation(graph, drones, gui, term)
+
+        hint = "R replay"
+        if is_dir:
+            hint += "  M change map"
+        hint += "  ESC quit"
+        logger.info(hint)
+
         while True:
-            term = TerminalDisplay(graph) if visual else None
-            frames = _run_simulation(graph, drones, gui, term)
-
-            hint = "R replay"
-            if is_dir:
-                hint += "  M change map"
-            hint += "  ESC quit"
-            logger.info(hint)
-
             action = gui.wait_for_key_or_close(allow_map=is_dir)
             if action == "quit":
                 gui.close()
