@@ -1,14 +1,10 @@
 from __future__ import annotations
+import math
+from typing import Optional
+import pygame
 from ..models.zone import HubType, Zone, ZoneType
 from ..models.graph import Graph
 from ..models.drone import Drone, DroneStatus
-import pygame
-
-import math
-import os
-from typing import Optional
-
-os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 
 
 class _Palette:
