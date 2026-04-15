@@ -216,9 +216,9 @@ if __name__ == "__main__":
     ]
 
     for path in map_files:
-        print(f"\n{'='*50}")
+        print(f"\n{'=' * 50}")
         print(f"Parsing: {path}")
-        print('='*50)
+        print('=' * 50)
         parser = MapParser(path)
         graph = parser.parse()
         print(graph)

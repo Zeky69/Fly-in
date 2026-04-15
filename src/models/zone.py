@@ -63,7 +63,7 @@ class Zone:
             return 1
         elif self.zone == ZoneType.BLOCKED:
             return float('inf')
-        return float('inf')  # unreachable, all enum members covered
+        return float('inf')
 
     def can_accept_drone(self) -> bool:
         if self.zone == ZoneType.BLOCKED:

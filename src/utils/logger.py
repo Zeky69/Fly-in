@@ -30,7 +30,7 @@ class Logger:
 
     def debug(self, message: str) -> None:
         if self._level <= self.DEBUG:
-            print(f"{PURPLE}[Debug] {message}{RESET}")
+            print(f"{PURPLE}[Debug]{RESET} {message}")
 
     def error(self, message: str) -> NoReturn:
         if self._level <= self.ERROR:

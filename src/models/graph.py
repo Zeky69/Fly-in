@@ -1,5 +1,3 @@
-
-
 from typing import Optional
 
 from .zone import HubType, Zone

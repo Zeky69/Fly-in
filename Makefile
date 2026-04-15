@@ -1,6 +1,7 @@
 VENV	= .venv
 MAIN	= main.py
-ARGS	= maps/easy/01_linear_path.txt
+ARGS	= /home/zakburak/Documents/42Tronc/fly-in/maps/ --visual
+LOG_LEVEL ?= INFO
 
 
 .PHONY: all install run debug lint lint-strict  clean fclean re
@@ -13,10 +14,10 @@ $(VENV): pyproject.toml
 install: $(VENV)
 
 run: $(VENV)
-	uv run $(MAIN) $(ARGS)
+	LOG_LEVEL=$(LOG_LEVEL) uv run $(MAIN) $(ARGS)
 
 debug: $(VENV)
-	uv run python -m pdb $(MAIN) $(ARGS)
+	LOG_LEVEL=$(LOG_LEVEL) uv run python -m pdb $(MAIN) $(ARGS)
 
 lint: $(VENV)
 	uv run flake8 .
