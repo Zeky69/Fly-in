@@ -29,7 +29,7 @@ class Simulator:
 
         moves: list[str] = []
         moves += self._land_transit(active)
-        moves += self._move_waiting(pre_waiting)
+        moves += self._move_waiting(pre_waiting, active)
 
         all_done = all(d.status == DroneStatus.ARRIVED for d in drones)
         return all_done, moves
@@ -62,10 +62,18 @@ class Simulator:
 
         return moves
 
-    def _move_waiting(self, pre_waiting: list[Drone]) -> list[str]:
+    def _move_waiting(
+        self, pre_waiting: list[Drone], active: list[Drone]
+    ) -> list[str]:
         conn_extra: dict[str, int] = {}
-        zone_in: dict[str, int] = {}
-        zone_out: dict[str, int] = {}
+        zone_in_transit: dict[str, int] = {}
+        in_transit_to: dict[str, int] = {}
+        for drone in active:
+            if drone.status == DroneStatus.IN_TRANSIT:
+                dest = drone.path[drone.path_index + 1]
+                in_transit_to[dest.name] = (
+                    in_transit_to.get(dest.name, 0) + 1
+                )
 
         candidates = self._build_candidates(pre_waiting)
         moves: list[str] = []
@@ -81,20 +89,23 @@ class Simulator:
             ):
                 continue
 
+            cost = int(nxt.movement_cost())
+
             eff_occ = (
                 len(nxt.drones)
-                - zone_out.get(nxt.name, 0)
-                + zone_in.get(nxt.name, 0)
+                + zone_in_transit.get(nxt.name, 0)
+                + in_transit_to.get(nxt.name, 0)
             )
             if nxt.type != HubType.END and eff_occ >= nxt.max_drone:
                 continue
 
             conn_extra[conn_key] = conn_extra.get(conn_key, 0) + 1
-            zone_in[nxt.name] = zone_in.get(nxt.name, 0) + 1
-            zone_out[curr.name] = zone_out.get(curr.name, 0) + 1
+            if cost != 1:
+                zone_in_transit[nxt.name] = (
+                    zone_in_transit.get(nxt.name, 0) + 1
+                )
 
             curr.drones.remove(drone)
-            cost = int(nxt.movement_cost())
 
             if cost == 1:
                 nxt.drones.append(drone)
