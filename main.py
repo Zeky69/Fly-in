@@ -159,12 +159,11 @@ def _load_and_route(
 
 def main() -> None:
     logger.set_level(os.environ.get("LOG_LEVEL", "ERROR"))
-    visual = "--visual" in sys.argv
-    args = [a for a in sys.argv[1:] if a != "--visual"]
+    args = sys.argv[1:]
     if not args:
         sys.stderr.write(
-            "Usage: python main.py <map_file|directory> [--visual]\n"
-            "Example: python main.py maps/ --visual\n"
+            "Usage: python main.py <map_file|directory>\n"
+            "Example: python main.py maps/\n"
         )
         sys.exit(1)
 
@@ -202,7 +201,7 @@ def main() -> None:
         graph, drones = result
         gui.load_graph(graph)
 
-        term = TerminalDisplay(graph) if visual else None
+        term = TerminalDisplay(graph)
         frames = _run_simulation(graph, drones, gui, term)
 
         hint = "R replay"

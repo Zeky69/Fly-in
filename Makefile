@@ -1,7 +1,7 @@
 VENV	= .venv
 MAIN	= main.py
-ARGS	= /home/zakburak/Documents/42Tronc/fly-in/maps/ --visual
-LOG_LEVEL ?= INFO
+ARGS	= /home/zakburak/Documents/42Tronc/fly-in/maps/
+LOG_LEVEL ?= ERROR
 
 
 .PHONY: all install run debug lint lint-strict  clean fclean re
