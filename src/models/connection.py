@@ -1,8 +1,10 @@
+"""Connection model between two zones."""
 from dataclasses import dataclass
 
 
 @dataclass
 class Connection:
+    """Directional link between two zones with capacity tracking."""
     from_zone: str
     to_zone: str
     max_link_capacity: int = 1

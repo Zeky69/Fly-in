@@ -1,3 +1,4 @@
+"""Drone model and its movement status."""
 from enum import Enum
 from dataclasses import dataclass, field
 from typing import Optional
@@ -6,6 +7,7 @@ from .connection import Connection
 
 
 class DroneStatus(Enum):
+    """Lifecycle state of a drone."""
     WAITING = "waiting"
     IN_TRANSIT = "in_transit"
     ARRIVED = "arrived"
@@ -13,6 +15,7 @@ class DroneStatus(Enum):
 
 @dataclass
 class Drone:
+    """A drone travelling along a pre-computed path."""
     id: int
     path: list[Zone] = field(default_factory=list)
     path_index: int = 0

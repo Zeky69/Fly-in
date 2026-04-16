@@ -1,9 +1,11 @@
+"""Dijkstra shortest-path and k-paths algorithms."""
 from ..models.graph import Graph
 from ..models.zone import Zone
 import heapq
 
 
 class Dijkstra:
+    """Stateless shortest-path finder using Dijkstra's algorithm."""
 
     def find_path(self, graph: Graph, start: Zone, end: Zone) -> list[Zone]:
 

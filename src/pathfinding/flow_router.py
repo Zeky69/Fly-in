@@ -1,9 +1,11 @@
+"""Flow-based drone path assignment."""
 from ..models.drone import Drone
 from ..models.graph import Graph
 from .djikstra import Dijkstra
 
 
 class FlowRouter:
+    """Distribute drones across k shortest paths to balance load."""
 
     def assign_paths(
         self,

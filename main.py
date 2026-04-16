@@ -1,3 +1,4 @@
+"""Entry point: parse maps, route drones, run simulation."""
 import os
 import sys
 import copy
@@ -19,6 +20,7 @@ def _find_best_k(
     graph: Graph,
     dijkstra: Dijkstra,
 ) -> int:
+    """Return the k value that minimises the number of simulation turns."""
     from src.simulation.simulator import Simulator as _Sim
 
     start = graph.get_start()
@@ -65,6 +67,7 @@ def _run_simulation(
     gui: GuiDisplay,
     term: TerminalDisplay | None = None,
 ) -> list[tuple[int, list[Drone], list[str]]]:
+    """Step through the simulation and return all recorded frames."""
     simulator = Simulator(graph)
     frames: list[tuple[int, list[Drone], list[str]]] = []
 

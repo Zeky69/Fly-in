@@ -1,3 +1,4 @@
+"""ANSI terminal display for the drone simulation."""
 from __future__ import annotations
 
 from ..models.drone import Drone, DroneStatus

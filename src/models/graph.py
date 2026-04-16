@@ -1,3 +1,4 @@
+"""Graph model holding zones and their connections."""
 from typing import Optional
 
 from .zone import HubType, Zone
@@ -5,6 +6,7 @@ from .connection import Connection
 
 
 class Graph:
+    """Weighted undirected graph of zones linked by connections."""
     def __init__(self) -> None:
         self.zones: dict[str, Zone] = {}
         self.connections: list[Connection] = []

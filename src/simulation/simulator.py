@@ -1,3 +1,4 @@
+"""Turn-based drone movement simulator."""
 from ..models.connection import Connection
 from ..models.drone import Drone, DroneStatus
 from ..models.graph import Graph
@@ -5,6 +6,7 @@ from ..models.zone import HubType, Zone, ZoneType
 
 
 class Simulator:
+    """Advance drones step-by-step through the graph."""
 
     _MAX_TURNS: int = 10_000
 

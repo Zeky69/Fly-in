@@ -19,6 +19,7 @@ except ImportError:
 
 
 class MapParser:
+    """Parse a .txt map file into a Graph with zones and connections."""
 
     NB_DRONE_PATTERN = re.compile(r'nb_drones:\s+(\d+)')
 

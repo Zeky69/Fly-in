@@ -1,3 +1,4 @@
+"""Pygame-based GUI display for the drone simulation."""
 from __future__ import annotations
 import math
 from typing import Optional
@@ -8,6 +9,7 @@ from ..models.drone import Drone, DroneStatus
 
 
 class _Palette:
+    """Colour constants for the GUI renderer."""
 
     BG = (18, 22, 42)
     SIDEBAR_BG = (28, 33, 55)

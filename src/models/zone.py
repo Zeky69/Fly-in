@@ -1,3 +1,4 @@
+"""Zone model with hub and terrain type enumerations."""
 from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
@@ -8,6 +9,7 @@ if TYPE_CHECKING:
 
 
 class HubType(str, Enum):
+    """Role of a zone in the network (normal hub, start, or end)."""
     NORMAL = "hub"
     END = "end_hub"
     START = "start_hub"
@@ -18,6 +20,7 @@ class HubType(str, Enum):
 
 
 class ZoneType(str, Enum):
+    """Terrain type affecting movement cost and drone capacity."""
     NORMAL = "normal"
     RESTRICTED = "restricted"
     PRIORITY = "priority"
@@ -34,6 +37,7 @@ class ZoneType(str, Enum):
 
 @dataclass
 class Zone:
+    """A node in the routing graph with position, capacity and state."""
     name: str
     x: int
     y: int

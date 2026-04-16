@@ -1,3 +1,4 @@
+"""Simple levelled logger writing to stdout/stderr."""
 import sys
 from typing import NoReturn
 
@@ -9,6 +10,7 @@ RESET = "\033[0m"
 
 
 class Logger:
+    """Minimal logger with DEBUG/INFO/WARNING/ERROR levels."""
     DEBUG = 0
     INFO = 1
     WARNING = 2
