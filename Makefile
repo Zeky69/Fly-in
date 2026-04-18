@@ -1,6 +1,6 @@
 VENV	= .venv
 MAIN	= main.py
-ARGS	= /home/zakburak/Documents/42Tronc/fly-in/maps/
+ARGS	= maps/easy/01_linear_path.txt
 LOG_LEVEL ?= ERROR
 
 
